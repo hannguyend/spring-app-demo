@@ -21,14 +21,6 @@ public class User {
 	
 	private String email;
 	
-	public List<Blog> getBlogs() {
-		return blogs;
-	}
-
-	public void setBlogs(List<Blog> blogs) {
-		this.blogs = blogs;
-	}
-
 	private String password;
 	
 	@ManyToMany
@@ -78,4 +70,12 @@ public class User {
 	public void setId(Integer id) {
 		this.id = id;
 	}	
+
+	public List<Blog> getBlogs() {
+		return blogs;
+	}
+
+	public void setBlogs(List<Blog> blogs) {
+		this.blogs = blogs;
+	}
 }
