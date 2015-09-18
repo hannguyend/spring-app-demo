@@ -38,8 +38,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="<spring:url value='/index.html' />">Spring
-						App Demo</a>
+					<a class="navbar-brand" href="<spring:url value='/index.html' />">BG Vendor App Demo</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
@@ -51,7 +50,7 @@
 							href="<spring:url value='/register' />">Register</a></li>
 						<li class="${current == 'login' ? 'active' : '' }"><a
 							href="<spring:url value='/login' />">Login</a></li>
-							
+						<li> <a href="<spring:url value='/logout' />">Logout</a></li>	
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
