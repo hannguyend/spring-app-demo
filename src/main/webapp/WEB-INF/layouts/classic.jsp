@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+   <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles-extras"
@@ -48,8 +49,9 @@
 							href="<spring:url value='/users' />">Users</a></li>
 						<li class="${current == 'register' ? 'active' : '' }"><a
 							href="<spring:url value='/register' />">Register</a></li>
-						<li class="${current == 'annother-register' ? 'active' : '' }"><a
-							href="<spring:url value='/anotherRegister' />">Another Register</a></li>
+						<li class="${current == 'login' ? 'active' : '' }"><a
+							href="<spring:url value='/login' />">Login</a></li>
+							
 					</ul>
 				</div>
 				<!--/.nav-collapse -->

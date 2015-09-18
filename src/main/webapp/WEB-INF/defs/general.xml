@@ -31,9 +31,9 @@
 		<put-attribute name="current" value="register" />
 	</definition>	
 	
-	<definition name="another-user-register" extends="common">
-		<put-attribute name="title" value="Another User Register" />
-		<put-attribute name="body" value="/WEB-INF/jsp/another-user-register.jsp" />
-		<put-attribute name="current" value="annother-register" />
+	<definition name="login" extends="common">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+		<put-attribute name="current" value="login" />
 	</definition>
 </tiles-definitions>
