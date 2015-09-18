@@ -22,6 +22,11 @@ public class UserController {
 		return new User();
 	}
 	
+	@ModelAttribute("anotherUserController")
+	private User userConstruction() {
+		return new User();
+	}
+	
 	@RequestMapping("/users")
 	public String users(Model model) {
 		model.addAttribute("users", userService.findAll());
@@ -40,8 +45,10 @@ public class UserController {
 	
 	@RequestMapping("/register")
 	public String showRegister() {
-		
 		return "user-register";
 	}
-	
+	@RequestMapping("/anotherRegister")
+	public String showAnotherRegister() {
+		return "another-user-register";
+	}
 }

@@ -38,5 +38,7 @@
 	</bean>
 
 	<jpa:repositories base-package="com.bg.rental.repository"/>
+	
+	<import resource="security.xml"/>
 
 </beans>

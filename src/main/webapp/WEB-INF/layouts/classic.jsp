@@ -48,6 +48,8 @@
 							href="<spring:url value='/users' />">Users</a></li>
 						<li class="${current == 'register' ? 'active' : '' }"><a
 							href="<spring:url value='/register' />">Register</a></li>
+						<li class="${current == 'annother-register' ? 'active' : '' }"><a
+							href="<spring:url value='/anotherRegister' />">Another Register</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
