@@ -1,12 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ include file="../layouts/taglib.jsp"%>
 
-</body>
-</html>
+<form:form commandName="userController" cssClass="form-horizontal">
+	<div class="form-group">
+		<label for="name" class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-10">
+			<form:input path="name" cssClass="form-control" />
+		</div>
+	</div>
+	<div class = "form-group">
+		<label for = "email" class = "col-sm-2 control-label">Email:</label>
+		<div class = "col-sm-10">
+			<form:input path="email" cssClass = "form-control"/>
+		</div>
+	</div>
+	<div class = "form-group">
+		<label for = "password" class = "col-sm-2 control-label">Password:</label>
+		<div class = "col-sm-10">
+			<form:password path="password" cssClass = "form-control"/>
+		</div>
+	</div>
+	<div class = "form-group">
+		<div class = "col-sm-offset-2 col-sm-10">
+			<input type = "submit" value = "Save" class = "btn btn-default"/>
+		</div>
+	</div>
+</form:form>

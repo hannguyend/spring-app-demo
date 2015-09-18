@@ -5,14 +5,15 @@
 <html>
 <head>
 
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras"
+	prefix="tilesx"%>
 
-<tilesx:useAttribute name = "current"/>
+<tilesx:useAttribute name="current" />
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-	
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -36,13 +37,18 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="<spring:url value='/index.html' />">Spring App Demo</a>
+					<a class="navbar-brand" href="<spring:url value='/index.html' />">Spring
+						App Demo</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="${current == 'index' ? 'active' : '' }"><a href="<spring:url value='/index.html' />">Home</a></li>
-						<li class="${current == 'users' ? 'active' : '' }"><a href="<spring:url value='/users' />">Users</a></li>
-					</ul>				
+						<li class="${current == 'index' ? 'active' : '' }"><a
+							href="<spring:url value='/index.html' />">Home</a></li>
+						<li class="${current == 'users' ? 'active' : '' }"><a
+							href="<spring:url value='/users' />">Users</a></li>
+						<li class="${current == 'register' ? 'active' : '' }"><a
+							href="<spring:url value='/register' />">Register</a></li>
+					</ul>
 				</div>
 				<!--/.nav-collapse -->
 			</div>
@@ -51,10 +57,8 @@
 
 		<tiles:insertAttribute name="body" />
 		<br />
-		<center>
-			<tiles:insertAttribute name="footer" />
-		</center>
 
+		<tiles:insertAttribute name="footer" />
 	</div>
 </body>
 </html>

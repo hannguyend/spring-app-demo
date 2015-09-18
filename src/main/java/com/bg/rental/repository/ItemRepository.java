@@ -10,6 +10,10 @@ import com.bg.rental.entity.Item;
 
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 	
+	/*
+	 * Pageable is used to limit the number of row data that are retrieved 
+	 * from database.
+	 */
 	List<Item> findByBlog (Blog blog, Pageable pageable);
 
 }

@@ -3,16 +3,24 @@ package com.bg.rental.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bg.rental.entity.User;
 import com.bg.rental.service.UserService;
 
 @Controller
 public class UserController {
 
 	@Autowired
-	private UserService userService;
+	private UserService userService;	
+	
+    /* This is used for spring from autowired from jsp page */	
+	@ModelAttribute("userController")
+	private User userConstruct() {
+		return new User();
+	}
 	
 	@RequestMapping("/users")
 	public String users(Model model) {
@@ -20,6 +28,10 @@ public class UserController {
 		return "users";
 	}
 	
+	/** {id} is used for dynamic references from the front with any id
+	 * This is good for creating a dynamic page with any user that has 
+	 * the same information.
+	 * */
 	@RequestMapping("/users/{id}")
 	public String detail(Model model, @PathVariable int id){
 		model.addAttribute("user", userService.findOneWithBlog(id));
@@ -27,7 +39,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/register")
-	public String showRegister(Model model) {
+	public String showRegister() {
 		
 		return "user-register";
 	}
