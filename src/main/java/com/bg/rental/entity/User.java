@@ -27,7 +27,7 @@ public class User {
 	@JoinTable
 	private List<Role> roles;
 	
-	@OneToMany (mappedBy = "user",fetch=FetchType.LAZY)
+	@OneToMany (mappedBy = "user")
 	private List<Blog> blogs;
 
 	
