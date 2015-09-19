@@ -1,5 +1,6 @@
 package com.bg.rental.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,13 +8,16 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bg.rental.entity.Blog;
 import com.bg.rental.entity.Item;
+import com.bg.rental.entity.Role;
 import com.bg.rental.entity.User;
 import com.bg.rental.repository.BlogRepository;
 import com.bg.rental.repository.ItemRepository;
+import com.bg.rental.repository.RoleRepository;
 import com.bg.rental.repository.UserRepository;
 
 /**
@@ -27,6 +31,9 @@ public class UserService {
 	 */
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 
 	@Autowired
 	private BlogRepository blogRepository;
@@ -43,7 +50,7 @@ public class UserService {
 	}
 
 	/**
-	 * Anything that access database is annotated as @Transactional.
+	 * Anything that accesses database is annotated as @Transactional.
 	 * @param id
 	 * @return
 	 */
@@ -60,5 +67,19 @@ public class UserService {
 		}
 		user.setBlogs(blogs);
 		return user;
+	}
+	
+	/**
+	 * Save user information from user-register page. 
+	 * @param user
+	 */
+	public void save(User user) {
+		user.setEnable(true);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		user.setPassword(encoder.encode(user.getPassword()));
+		List<Role> roles = new ArrayList<Role>();
+		roles.add(roleRepository.findByName("ROLE_USER"));
+		user.setRoles(roles);
+		userRepository.save(user);	
 	}
 }
