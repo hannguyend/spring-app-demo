@@ -56,7 +56,6 @@ public class InitDBService {
 		roles.add(roleUser);
 		userAdmin.setRoles(roles);
 		userRepository.save(userAdmin);
-		userRepository.save(userAdmin);
 		
 		Blog blogJavavids = new Blog();
 		blogJavavids.setName("Javavids");
