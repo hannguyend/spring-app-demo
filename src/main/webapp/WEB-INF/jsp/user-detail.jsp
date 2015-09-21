@@ -24,18 +24,20 @@
 						<label for="name" class="col-sm-2 control-label">Name</label>
 						<div class="col-sm-10">
 							<form:input path="name" cssClass="form-control" />
+							<form:errors path = "name"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="email" class="col-sm-2 control-label">URL</label>
 						<div class="col-sm-10">
 							<form:input path="url" cssClass="form-control" />
+							<form:errors path = "url"/>
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary" value="Save">Save</button>
+					<input type="submit" class="btn btn-primary" value="Save"/>
 				</div>
 			</div>
 		</div>
@@ -59,7 +61,7 @@
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs">
 		<c:forEach items="${user.blogs}" var="blog">
-			<li><a href="#blog_${blog.id}" data-toggle="tab">${blog.name}</a></li>
+			<li><a href="#blog_${blog.id}" data-toggle="tab"><c:out value ="${blog.name}"/></a></li>
 		</c:forEach>
 	</ul>
 
@@ -67,8 +69,8 @@
 	<div class="tab-content">
 		<c:forEach items="${user.blogs}" var="blog">
 			<div class="tab-pane" id="blog_${blog.id}">
-				<h1>${blog.name}</h1>
-				<p>${blog.url}</p>
+				<h1><c:out value = "${blog.name}"/></h1>
+				<p><c:out value = "${blog.url}"/></p>
 				<a href = "<spring:url value='/blog/remove/${blog.id}'/>" class ="btn btn-danger triggerRemove">Remove Blog</a>
 				<p></p>
 				<table class="table table-hover table-bordered">

@@ -2,9 +2,12 @@ package com.bg.rental.controller;
 
 import java.security.Principal;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +27,9 @@ public class UserController {
 	@Autowired
 	private BlogService blogService;
 	
-    /* This is used for spring from autowired from jsp page */	
+    /* This is used for spring from autowired from jsp page
+     * This ModelAttribute param should be the same with the form
+     * */	
 	@ModelAttribute("userController")
 	private User constructUser() {
 		return new User();
@@ -57,8 +62,15 @@ public class UserController {
 		return "user-register";
 	}
 	
+	/*
+	 * ModelAttribute param has to be the same with commandName of the associated form. 
+	 * In my case, it should be userController
+	 */
 	@RequestMapping(value = "/register", method=RequestMethod.POST)
-	public String doRegister(@ModelAttribute("user") User user){
+	public String doRegister(@Valid @ModelAttribute("userController") User user, BindingResult result){
+		if (result.hasErrors()) {
+			return "user-register";
+		}
 		userService.save(user);
 		return "redirect:/register?success=true";
 	}	
@@ -70,8 +82,15 @@ public class UserController {
 		return "user-detail";
 	}
 	
+	/*
+	 * ModelAttribute param should be the same with the associated form.
+	 * In my case, <form:form commandName = "blogC", and ModelAttribute should be "blogC"
+	 */
 	@RequestMapping(value = "/account", method=RequestMethod.POST)
-	public String addBlog(@ModelAttribute("blog") Blog blog, Principal principal){
+	public String addBlog(Model model, @Valid @ModelAttribute("blogC") Blog blog, BindingResult result, Principal principal){
+		if (result.hasErrors()) {
+			return account(model, principal);
+		}
 		String name = principal.getName();
 		blogService.save(blog, name);
 		return "redirect:/account";
@@ -90,8 +109,3 @@ public class UserController {
 		return "redirect:/users";
 	}
 }
-
-
-
-
-
