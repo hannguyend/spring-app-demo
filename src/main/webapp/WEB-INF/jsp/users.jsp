@@ -29,7 +29,7 @@
 	</tbody>
 </table>
 
-<!-- Modal -->
+<!-- Remove User Account -->
 <div class="modal fade" id="userModelRemove" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
