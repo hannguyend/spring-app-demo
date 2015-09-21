@@ -35,32 +35,54 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary" value ="Save" >Save changes</button>
+					<button type="submit" class="btn btn-primary" value="Save">Save</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </form:form>
 
-<c:forEach items="${user.blogs}" var="blog">
+<br />
 
-	<h1>${blog.name}</h1>
-	<p>${blog.url}</p>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.nav-tabs a:first').tab('show') // Select first tab
+	});
+</script>
 
-	<table class="table table-hover table-bordered">
-		<thead>
-			<tr class="success">
-				<th>Title</th>
-				<th>Link</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${blog.items}" var="item">
-				<tr>
-					<td>${item.title}</td>
-					<td>${item.link}</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-</c:forEach>
+<div>
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs">
+		<c:forEach items="${user.blogs}" var="blog">
+			<li><a href="#blog_${blog.id}" data-toggle="tab">${blog.name}</a></li>
+		</c:forEach>
+	</ul>
+
+	<!-- Tab panels -->
+	<div class="tab-content">
+		<c:forEach items="${user.blogs}" var="blog">
+			<div class="tab-pane" id="blog_${blog.id}">
+				<h1>${blog.name}</h1>
+				<p>${blog.url}</p>
+				<a href = "<spring:url value='/blog/remove/${blog.id}'/>" class ="btn btn-danger">Remove Blog</a>
+				<p></p>
+				<table class="table table-hover table-bordered">
+					<thead>
+						<tr class="success">
+							<th>Title</th>
+							<th>Link</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${blog.items}" var="item">
+							<tr>
+								<td>${item.title}</td>
+								<td>${item.link}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</c:forEach>
+	</div>
+</div>
