@@ -11,17 +11,33 @@
 									$(this).attr("href"));
 							$('#blogModelRemove').modal();
 						});
-				/* $(".triggerSubmit").click(function(event) {
-					if (error) {
-						event.preventDefault();
-						$('#myModal').modal('show');
-					}
-				}); */
+				$('.addBlog').validate(
+						{
+							rules : {
+								name : {
+									required : true,
+									minlength : 3
+								},
+								url : {
+									required : true,
+									minlength : 3,
+									url : true
+								},
+							},
+							highlight : function(element) {
+								$(element).closest('.form-group').removeClass(
+										'has-success').addClass('has-error');
+							},
+							unhighlight : function(element) {
+								$(element).closest('.form-group').removeClass(
+										'has-error').addClass('has-success');
+							}
+						});
 			});
 </script>
 
 
-<form:form commandName="blogC" cssClass="form-horizontal">
+<form:form commandName="blogC" cssClass="form-horizontal addBlog">
 	<!-- Button trigger modal -->
 	<button type="button" class="btn btn-primary btn-lg"
 		data-toggle="modal" data-target="#myModal">New Blog</button>
@@ -100,7 +116,7 @@
 						<c:forEach items="${blog.items}" var="item">
 							<tr>
 								<td>${item.title}</td>
-								<td><a href = "${item.link}" target = "_blank">"${item.link}"</a></td>
+								<td><a href="${item.link}" target="_blank">"${item.link}"</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
