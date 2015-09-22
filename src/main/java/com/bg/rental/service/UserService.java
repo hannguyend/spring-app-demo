@@ -94,4 +94,11 @@ public class UserService {
 	public void delete(int id) {
 		userRepository.delete(id);
 	}
+
+	/*
+	 * Look into DB and ask for the availability of a user's username
+	 */
+	public User findByName(String username) {
+		return userRepository.findByName(username);
+	}
 }

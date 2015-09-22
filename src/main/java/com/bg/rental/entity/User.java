@@ -3,6 +3,7 @@ package com.bg.rental.entity;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 
+import com.bg.rental.annotation.UniqueUsername;
+
 @Entity
 public class User {
 
@@ -21,6 +24,8 @@ public class User {
 	private Integer id;
 	
 	@Size(min = 3, message = "Name must be at lease 3 characters!")
+	@Column(unique = true)
+	@UniqueUsername(message = "Such username already exists! Please use a different one. ")
 	private String name;
 	
 	@Size (min = 1, message = "Invalid email address")

@@ -8,6 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bg.rental.entity.User;
 import com.bg.rental.service.UserService;
@@ -44,5 +46,18 @@ public class RegisterController {
 		}
 		userService.save(user);
 		return "redirect:/register?success=true";
+	}
+	
+	/**
+	 * Ajax method on the client side will call this mapping to see if 
+	 * the username is available
+	 * 
+	 * @return string of a boolean
+	 */
+	@RequestMapping("/available")
+	@ResponseBody
+	public String available(@RequestParam String username) {
+		Boolean booleanAvailable = userService.findByName(username) == null;
+		return booleanAvailable.toString();
 	}
 }
